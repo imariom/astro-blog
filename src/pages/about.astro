@@ -1,0 +1,87 @@
+---
+import "../styles/global.css";
+
+const pageTitle = "About Me";
+const contentTitle = "This is my about page...";
+
+const identity = {
+    firstName: "Mário",
+    country: "Mozambique",
+    occupation: "Software Engineer",
+    hobbies: ["games", "football", "swimming", "documentaries"],
+};
+
+const skills = [
+    "HTML",
+    "CSS",
+    "SASS",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Astro",
+];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const fontStyle = "uppercase";
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{pageTitle}</title>
+        <style define:vars={{ skillColor, fontWeight, fontStyle }}>
+            h1 {
+                color: purple;
+                font-size: 4rem;
+            }
+
+            .skill {
+                color: var(--skillColor);
+                font-weight: var(--fontWeight);
+                text-transform: var(--fontStyle);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="nav">
+            <a href="/" id="home">Home</a>
+            <a href="/about" id="about">About Me</a>
+            <a href="/blog" id="about">Blog</a>
+        </div>
+        <div class="content">
+            <h1 class="title">{contentTitle}</h1>
+            <h2>Learn about me bellow</h2>
+            <div>
+                <h3>My name is {identity.firstName}</h3>
+                <h3>I work from and live in {identity.country}</h3>
+                <h3>I work as a {identity.occupation}</h3>
+                <h3>My hobbies are:</h3>
+                <ul>
+                    {identity.hobbies.map((hobby) => <li>{hobby}</li>)}
+                </ul>
+            </div>
+            <h2>My skills are:</h2>
+            <ul>
+                {skills.map((skill) => <li class="skill">{skill}</li>)}
+            </ul>
+        </div>
+
+        {happy && <p>I am happy to be learning Astro!</p>}
+        {finished && <p>I finished this tutorial</p>}
+        {
+            goal === 3 ? (
+                <p>My goal is to finish in 2 days</p>
+            ) : (
+                <p>My goal is not delaying.</p>
+            )
+        }
+    </body>
+</html>
